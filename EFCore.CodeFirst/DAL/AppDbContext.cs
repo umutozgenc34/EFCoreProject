@@ -9,6 +9,8 @@ public class AppDbContext : DbContext
 {
     public DbSet<Product> Products { get; set; }
     public DbSet<Category> Categories { get; set; }
+    public DbSet<Student> Students { get; set; }
+    public DbSet<Teacher> Teachers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -18,7 +20,19 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        //onetomany
         //modelBuilder.Entity<Category>().HasMany(x=> x.Products).WithOne(x => x.Category).HasForeignKey(x=> x.CategoryId);
+        //onetoone
+        //modelBuilder.Entity<Product>().HasOne(x => x.ProductFeature).WithOne(x => x.Product).HasForeignKey<ProductFeature>(x=> x.ProductId);
+        //manytomany
+        //modelBuilder.Entity<Student>().HasMany(x => x.Teachers).WithMany(x => x.Students).
+        //UsingEntity<Dictionary<string, object>>(
+        //"StudentTeacher",
+        //x => x.HasOne<Teacher>().WithMany().HasForeignKey("TeacherId").HasConstraintName("FK_TeacherId"),
+        //x => x.HasOne<Student>().WithMany().HasForeignKey("StudentId").HasConstraintName("FK_StudentId")
+        //);
+          
+        //base.OnModelCreating(modelBuilder);
     }
 
 
