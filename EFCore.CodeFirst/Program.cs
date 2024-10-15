@@ -7,16 +7,12 @@ Initializer.Build();
 using (var _context = new AppDbContext())
 {
 
-    var product = _context.Products.First();
+    //var product = _context.Products.First();
 
-    product.Name = "Test";
-    product.Stock = 15;
-    //_context.Products.Update(product); EFCore otomatik olarak modified yapıyor bu methoda gerek yok
-    _context.SaveChanges();
-
-
-
-
+    //product.Name = "Test";
+    //product.Stock = 15;
+    ////_context.Products.Update(product); EFCore otomatik olarak modified yapıyor bu methoda gerek yok
+    //_context.SaveChanges();
 
 
     //_context.Products.Add(new() { Name = "Kitap2",  Price=500,  Barcode = 123, Stock = 30 });
