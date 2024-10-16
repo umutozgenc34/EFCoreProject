@@ -42,15 +42,15 @@ using (var _context = new AppDbContext())
 
     //Lazy Loading
 
-    var category = _context.Categories.First();
-    Console.WriteLine("category çekildi");
-    var products = category.Products;
-    foreach (var item in products)
-    {
-        //(N+1 Problem)
-        var productFeature = item.ProductFeature;
-    }
-    Console.WriteLine("işlem bitti");
+    //var category = _context.Categories.First();
+    //Console.WriteLine("category çekildi");
+    //var products = category.Products;
+    //foreach (var item in products)
+    //{
+    //    //(N+1 Problem)
+    //    var productFeature = item.ProductFeature;
+    //}
+    //Console.WriteLine("işlem bitti");
 
 
 
