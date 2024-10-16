@@ -9,16 +9,16 @@ namespace EFCore.CodeFirst.DAL;
 public class AppDbContext : DbContext
 {
     //TPH
-    public DbSet<BasePerson> Persons { get; set; }
-    public DbSet<Manager> Managers { get; set; } //Base class DbSet edilmeden sadece Managers ve Employees oluşturulursa
-                                                 // BasePersonun özelliklerini de tutan 2 tablo oluşturulur BasePerson da
-                                                 // DbSet edilirse Tek bir ortak tablo oluşur.
-    public DbSet<Employee> Employees { get; set; }
-    //public DbSet<Product> Products { get; set; }
-    //public DbSet<Category> Categories { get; set; }
+    //public DbSet<BasePerson> Persons { get; set; }
+    //public DbSet<Manager> Managers { get; set; } //Base class DbSet edilmeden sadece Managers ve Employees oluşturulursa
+    //                                             // BasePersonun özelliklerini de tutan 2 tablo oluşturulur BasePerson da
+    //                                             // DbSet edilirse Tek bir ortak tablo oluşur.
+    //public DbSet<Employee> Employees { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Category> Categories { get; set; }
     //public DbSet<Student> Students { get; set; }
     //public DbSet<Teacher> Teachers { get; set; }
-    //public DbSet<ProductFeature> ProductFeatures { get; set; }
+    public DbSet<ProductFeature> ProductFeatures { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -29,6 +29,12 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        //indeks oluşturma
+        //modelBuilder.Entity<Product>().HasIndex(x => x.Name).IncludeProperties(x => new { x.Price,x.Stock} );
+        //contrait
+        modelBuilder.Entity<Product>().HasCheckConstraint("PriceDiscountCheck", "[Price] > [DiscountPrice]");
+        
+
         //TPT
         //modelBuilder.Entity<BasePerson>().ToTable("Persons");
         //modelBuilder.Entity<Employee>().ToTable("Employees");
