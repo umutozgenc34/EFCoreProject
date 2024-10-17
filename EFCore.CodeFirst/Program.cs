@@ -9,6 +9,34 @@ Initializer.Build();
 
 using (var _context = new AppDbContext())
 {
+    //Transaction
+
+    using (var transaction = _context.Database.BeginTransaction())
+    {
+        var category = new Category() { Name = "Kılıflar" };
+        _context.Categories.Add(category);
+
+
+        Product product = new Product()
+        {
+            Name = "Kılıf1",
+            Price = 300,
+            Stock = 100,
+            Barcode = 555,
+            CategoryId = category.Id
+        };
+        _context.Products.Add(product);
+        _context.SaveChanges();
+
+        transaction.Commit();
+
+    }
+
+
+
+    
+
+
     //entity projection
     //var products = _context.Products.Include(p=> p.Category).ToList();
 
