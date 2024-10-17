@@ -1,11 +1,53 @@
-﻿using EFCore.CodeFirst;
+﻿using AutoMapper.QueryableExtensions;
+using EFCore.CodeFirst;
 using EFCore.CodeFirst.DAL;
+using EFCore.CodeFirst.Dtos;
+using EFCore.CodeFirst.Mappers;
 using Microsoft.EntityFrameworkCore;
 
 Initializer.Build();
 
 using (var _context = new AppDbContext())
 {
+    //entity projection
+    //var products = _context.Products.Include(p=> p.Category).ToList();
+
+    //Anonymous type projection
+    //Select kullanıldığında Include yazmaya gerek yok
+    //var products = _context.Products.Include(p => p.Category).Include(p => p.ProductFeature).Select(x => new
+    //{
+    //    CategoryName = x.Category.Name,
+    //    ProductName = x.Name,
+    //    ProductPrice = x.Price,
+    //    Width = (int?)x.ProductFeature.Width
+
+    //}).Where(x=> x.Width > 100 && x.ProductName.StartsWith("a")).ToList();
+
+    //DTO
+
+    //var products = _context.Products.Select(x => new ProductDto
+    //{
+    //    CategoryName = x.Category.Name,
+    //    ProductName = x.Name,
+    //    Price = x.Price,
+    //    Width = (int?)x.ProductFeature.Width
+
+    //}).Where(x => x.Width > 100 && x.ProductName.StartsWith("a")).ToList();
+
+    //AUTOMAPPER
+
+    //var products = _context.Products.ToList();
+
+    //var pdto = ObjectMapper.Mapper.Map<List<Product>>(products);
+
+    //ProjectTo kullanimi
+
+    //var pdto = _context.Products.ProjectTo<ProductDto>(ObjectMapper.Mapper.ConfigurationProvider).Where(x=> x.Price > 100).ToList();
+
+
+
+    //store procedure
+    //_context.Products.FromSqlRaw("exec sp_get_products").ToList();
 
     //var category = new Category() {Name = "Kalemler" };
     //category.Products.Add(new() { Name = "Kalem1", Price = 200, Barcode = 153, Stock = 50, ProductFeature = new() 

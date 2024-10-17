@@ -8,6 +8,7 @@ namespace EFCore.CodeFirst.DAL;
 
 public class AppDbContext : DbContext
 {
+
     //TPH
     //public DbSet<BasePerson> Persons { get; set; }
     //public DbSet<Manager> Managers { get; set; } //Base class DbSet edilmeden sadece Managers ve Employees oluşturulursa
@@ -32,7 +33,7 @@ public class AppDbContext : DbContext
         //indeks oluşturma
         //modelBuilder.Entity<Product>().HasIndex(x => x.Name).IncludeProperties(x => new { x.Price,x.Stock} );
         //contrait
-        modelBuilder.Entity<Product>().HasCheckConstraint("PriceDiscountCheck", "[Price] > [DiscountPrice]");
+        //modelBuilder.Entity<Product>().HasCheckConstraint("PriceDiscountCheck", "[Price] > [DiscountPrice]");
         
 
         //TPT
